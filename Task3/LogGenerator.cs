@@ -11,13 +11,17 @@ namespace Task3
     {
         static string _dateTimeFormat = "yyyy-MM-ddТHH:mm:ss.fffZ";
 
-        // 1мб примерно 17 000 строк
         public static void GenerateLog(int actionCount)
+        {
+            GenerateLog(actionCount, "log.log");
+        }
+
+        // 1мб примерно 17 000 строк
+        public static void GenerateLog(int actionCount, string logFileName)
         {
             var maxValue = 200;
             var currentValue = 37;
             var rnd = new Random();
-            var logFileName = $"log.log";
             File.Create($"{Directory.GetCurrentDirectory()}{logFileName}");
             var fs = new FileStream(logFileName, FileMode.Append);
             var sw = new StreamWriter(fs);

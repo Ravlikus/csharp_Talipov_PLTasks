@@ -12,6 +12,7 @@ namespace Task3
     class Program
     {
         static string _usage = "g - генерирует пример лога (log.log) на 1 мб\n" +
+            "g <название/путь генерируемого лог файла> - генерирует пример лога на 1 мб по заданному пути/названию\n" +
             "<путь до лог файла> <начало периода> <конец периода> - генерирует отчет по периоду в report.log";
         static Regex _dateTimeTemplate = new Regex(@"(\d{4}-\d{2}-\d{2}[TТ]\d{2}:\d{2}:\d{2}\.\d{3}Z)");
         static Regex _usernameTemplate = new Regex(@"(\[.*\])");
@@ -28,6 +29,17 @@ namespace Task3
                 try
                 {
                     LogGenerator.GenerateLog(17000);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (args.Length == 2 && args[0] == "g")
+            {
+                try
+                {
+                    LogGenerator.GenerateLog(17000, args[1]);
                 }
                 catch (Exception ex)
                 {
